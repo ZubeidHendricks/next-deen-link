@@ -3,10 +3,10 @@ import { getTeacherProfileWithDetails, getTeacherSubjects } from '@/lib/db/teach
 
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ) {
   try {
-    const teacherId = parseInt(params.id);
+    const teacherId = parseInt(context.params.id);
     
     if (isNaN(teacherId)) {
       return NextResponse.json({ error: 'Invalid teacher ID' }, { status: 400 });

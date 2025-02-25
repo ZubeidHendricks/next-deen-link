@@ -4,7 +4,7 @@ import { getConversation, getConversationMessages } from '@/lib/db/messaging-que
 
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ) {
   try {
     const user = await getUser();
@@ -13,7 +13,7 @@ export async function GET(
       return NextResponse.json({ error: 'Not authenticated' }, { status: 401 });
     }
     
-    const conversationId = parseInt(params.id);
+    const conversationId = parseInt(context.params.id);
     
     if (isNaN(conversationId)) {
       return NextResponse.json({ error: 'Invalid conversation ID' }, { status: 400 });
