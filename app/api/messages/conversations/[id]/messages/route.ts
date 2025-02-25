@@ -1,10 +1,10 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { getUser } from '@/lib/db/queries';
 import { getConversation, getConversationMessages } from '@/lib/db/messaging-queries';
 
 export async function GET(
-  request: Request,
-  context: { params: { id: string } }
+  request: NextRequest,
+  { params }: { params: { id: string } }
 ) {
   try {
     const user = await getUser();
@@ -13,7 +13,7 @@ export async function GET(
       return NextResponse.json({ error: 'Not authenticated' }, { status: 401 });
     }
     
-    const conversationId = parseInt(context.params.id);
+    const conversationId = parseInt(params.id);
     
     if (isNaN(conversationId)) {
       return NextResponse.json({ error: 'Invalid conversation ID' }, { status: 400 });
@@ -31,7 +31,7 @@ export async function GET(
     }
     
     // Get URL parameters
-    const { searchParams } = new URL(request.url);
+    const { searchParams } = request.nextUrl;
     const before = searchParams.get('before');
     const limit = searchParams.get('limit');
     

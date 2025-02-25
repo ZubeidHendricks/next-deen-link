@@ -1,12 +1,12 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { getTeacherProfileWithDetails, getTeacherSubjects } from '@/lib/db/teacher-queries';
 
 export async function GET(
-  request: Request,
-  context: { params: { id: string } }
+  request: NextRequest,
+  { params }: { params: { id: string } }
 ) {
   try {
-    const teacherId = parseInt(context.params.id);
+    const teacherId = parseInt(params.id);
     
     if (isNaN(teacherId)) {
       return NextResponse.json({ error: 'Invalid teacher ID' }, { status: 400 });
