@@ -19,6 +19,8 @@
     "@radix-ui/react-scroll-area": "^1.2.2",
     "@radix-ui/react-separator": "^1.1.1",
     "@radix-ui/react-slot": "^1.1.1",
+    "@stripe/react-stripe-js": "^3.1.1",
+    "@stripe/stripe-js": "^5.7.0",
     "@tailwindcss/postcss": "4.0.3",
     "@types/bcryptjs": "^2.4.6",
     "@types/node": "^22.13.1",
